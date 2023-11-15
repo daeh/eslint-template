@@ -1,0 +1,32 @@
+{
+  "printWidth": 120,
+  "trailingComma": "all",
+  "tabWidth": 2,
+  "useTabs": false,
+  "semi": false,
+  "singleQuote": true,
+  "quoteProps": "consistent",
+  "bracketSpacing": true,
+  "bracketSameLine": true,
+  "arrowParens": "always",
+  "proseWrap": "never",
+  "overrides": [
+    {
+      "files": "*.json",
+      "options": {
+        "printWidth": 400,
+        "tabWidth": 2,
+        "useTabs": false,
+        "singleQuote": false
+      }
+    },
+    {
+      "files": ["*.html"],
+      "options": {
+        "singleQuote": false,
+        "bracketSameLine": true,
+        "printWidth": 200
+      }
+    }
+  ]
+}

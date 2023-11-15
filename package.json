@@ -1,0 +1,23 @@
+{
+  "name": "eslint-template",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@eslint/js": "^8.53.0",
+    "@stylistic/eslint-plugin-js": "^1.2.0",
+    "@stylistic/eslint-plugin-ts": "^1.2.0",
+    "@typescript-eslint/eslint-plugin": "^6.10.0",
+    "@typescript-eslint/parser": "^6.10.0",
+    "eslint": "^8.53.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "globals": "^13.23.0",
+    "path": "^0.12.7",
+    "url": "^0.11.3"
+  }
+}

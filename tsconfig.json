@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.dev",
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.js"
+  ]
+}

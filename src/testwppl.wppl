@@ -1,0 +1,13 @@
+var makeCoin = function(weight) {
+  return function() { return flip(weight) ? 'h' : 't' }
+}
+
+display('test display')
+
+var fairCoin = makeCoin(0.5)
+var trickCoin = makeCoin(0.95)
+var bentCoin = makeCoin(0.25)
+
+viz(repeat(20, fairCoin))
+viz(repeat(20, trickCoin))
+viz(repeat(20, bentCoin))
