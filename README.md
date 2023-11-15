@@ -1,9 +1,7 @@
 # ESLint Template
 
-- Flat ESLint Config
-- Uses `@stylistic/eslint-plugin`
-
-
+- Uses the new [flat config system](https://eslint.org/docs/latest/use/configure/configuration-files-new) that is the default beginning in ESLint `v9.0.0`.
+- Uses [ESLint Stylistic](https://eslint.style/) `@stylistic/eslint-plugin`
 
 ## VSCode Settings
 
@@ -21,21 +19,19 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[wppl]": {
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[json][jsonc]": {
-    "editor.defaultFormatter": "vscode.json-language-features"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[css][scss][less]": {
-    "editor.defaultFormatter": "vscode.css-language-features"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }
 ```
-
-
 
 ## Author
 

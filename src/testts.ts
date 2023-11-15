@@ -1,22 +1,13 @@
-let currentTrial = 0
-let currentTrial2 = 0
+let c = 0
+let d = 0
 
-const responseElements = [
-  document.getElementById('rangeSlider') as HTMLInputElement,
-  document.getElementById('freeRespField') as HTMLInputElement,
-]
-
-const advance = () => {
-  for (const elem of responseElements) {
-    if (elem.type === 'range') {
-      elem.value = '50'
-    }
-    if (elem.type === 'text') {
-      elem.value = ''
-    }
-  }
+const advancets = () => {
+  c++
+  d++
 }
 
-responseElements[0].addEventListener('click', (event) => {
-  advance()
+const abutton = document.getElementById('abutton') as HTMLButtonElement
+
+abutton.addEventListener('click', () => {
+  advancets()
 })

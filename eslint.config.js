@@ -68,7 +68,7 @@ const config = [
       sourceType: 'module',
       parser: typescriptEslintParser,
       parserOptions: {
-        ecmaVersion: 'latest', // 2024 = 15
+        ecmaVersion: 'latest', // 2024 sets the ecmaVersion parser option to 15
         tsconfigRootDir: resolve(projectDirname),
         project: './tsconfig.json',
       },
@@ -83,7 +83,6 @@ const config = [
         ...globals.browser,
         ...globals.node,
         ...globals.es2021,
-        // myCustomGlobal: "readonly"
       },
     },
     plugins: {
@@ -97,7 +96,6 @@ const config = [
       ...prettierConfig.rules,
       ...pluginImportConfig.rules,
       ...typescriptEslintPlugin.configs['stylistic-type-checked'].rules,
-      ...typescriptEslintPlugin.configs['eslint-recommended'].rules,
       ...typescriptEslintPlugin.configs.recommended.rules,
       ...typescriptEslintPlugin.configs['recommended-type-checked'].rules,
       //
@@ -119,7 +117,6 @@ const config = [
         ...globals.browser,
         ...globals.node,
         ...globals.es2021,
-        // myCustomGlobal: "readonly"
       },
     },
     plugins: {
@@ -133,7 +130,6 @@ const config = [
       ...prettierConfig.rules,
       ...pluginImportConfig.rules,
       ...typescriptEslintPlugin.configs['stylistic'].rules,
-      ...typescriptEslintPlugin.configs['eslint-recommended'].rules,
       ...typescriptEslintPlugin.configs.recommended.rules,
       ...typescriptEslintPlugin.configs['recommended-type-checked'].rules,
       //
@@ -158,7 +154,6 @@ const config = [
       ...typescriptStylisticPlugin.configs['disable-legacy'].rules,
       ...prettierConfig.rules,
       ...typescriptEslintPlugin.configs['stylistic-type-checked'].rules,
-      ...typescriptEslintPlugin.configs['eslint-recommended'].rules,
       ...baseRules,
       ...typescriptRules,
       '@typescript-eslint/prefer-nullish-coalescing': ['off'],
@@ -177,7 +172,6 @@ const config = [
       ...javascriptStylisticPlugin.configs['disable-legacy'].rules,
       ...prettierConfig.rules,
       ...typescriptEslintPlugin.configs['stylistic'].rules,
-      ...typescriptEslintPlugin.configs['eslint-recommended'].rules,
       ...typescriptEslintPlugin.configs.recommended.rules,
       ...typescriptEslintPlugin.configs['recommended-type-checked'].rules,
       ...typescriptEslintPlugin.configs.strict.rules,
@@ -186,7 +180,7 @@ const config = [
       '@typescript-eslint/no-unsafe-call': ['off'],
       '@typescript-eslint/no-unsafe-member-access': ['off'],
       '@typescript-eslint/no-unsafe-assignment': ['off'],
-      '@typescript-eslint/no-unused-vars': ['warning'],
+      '@typescript-eslint/no-unused-vars': ['warn'],
     },
   },
   {
@@ -196,7 +190,7 @@ const config = [
       sourceType: 'module',
       parser: espree,
       parserOptions: {
-        ecmaVersion: 2017, // 2017 = 8
+        ecmaVersion: 2017, // 2017 sets the ecmaVersion parser option to 8
       },
       globals: {
         ...globals.browser,
@@ -235,11 +229,8 @@ const config = [
     },
     rules: {
       ...javascriptStylisticPlugin.configs['disable-legacy'].rules,
-      ...typescriptEslintPlugin.configs['stylistic'].rules,
       ...eslint.configs.recommended.rules,
-      'quotes': ['error', 'single', { avoidEscape: true, allowTemplateLiterals: false }],
-      'semi': ['error', 'never'],
-      'indent': [
+      '@stylistic/js/indent': [
         'error',
         2,
         {
@@ -248,7 +239,9 @@ const config = [
           ArrayExpression: 'first',
         },
       ],
-      'space-before-function-paren': [
+      '@stylistic/js/semi': ['error', 'never'],
+      '@stylistic/js/quotes': ['warn', 'single', { avoidEscape: true, allowTemplateLiterals: false }],
+      '@stylistic/js/space-before-function-paren': [
         'error',
         {
           anonymous: 'never',
@@ -256,8 +249,8 @@ const config = [
           asyncArrow: 'always',
         },
       ],
-      'linebreak-style': ['error', 'unix'],
-      'no-console': 'off',
+      '@stylistic/js/linebreak-style': ['error', 'unix'],
+      '@stylistic/js/no-console': ['off'],
       'no-constant-condition': [
         'error',
         {
@@ -270,10 +263,10 @@ const config = [
           allowEmptyCatch: true,
         },
       ],
-      'no-extra-bind': 'error',
-      'no-redeclare': 'off',
-      'no-unused-vars': 'warn',
-      'no-warning-comments': 'error',
+      'no-extra-bind': ['error'],
+      'no-redeclare': ['off'],
+      'no-unused-vars': ['warn'],
+      'no-warning-comments': ['error'],
     },
   },
   {

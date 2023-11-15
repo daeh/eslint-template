@@ -4,7 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "build": "tsc --noEmit"
+    "build": "tsc --project tsconfig.json --noEmit",
+    "lint": "ESLINT_USE_FLAT_CONFIG=true prettier --write . && eslint --config eslint.config.js . --fix",
+    "update-deps": "npm update --save"
   },
   "devDependencies": {
     "@eslint/js": "^8.53.0",
