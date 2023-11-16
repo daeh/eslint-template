@@ -39,7 +39,7 @@ npm install
 
 In addition to installing the dependancies, this will create the `eslint.config.js` link to `eslint.config.mjs`.
 
-## VS Code Settings
+### VS Code Settings
 
 For VS Code to respect the configuration, you need to specify the formatter for the relevant files. This is done for you in `.vscode/settings.json`, which is copied bellow. This tells VS Code to use the ESLint flat config system, to use the [Prettier - Code Formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) extension to format Javascript, HTML, JSON, and CSS files, and let ESLint format WebPPL files. This obviously requires the [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) extensions to be enabled for the workspace.
 
@@ -70,6 +70,27 @@ For VS Code to respect the configuration, you need to specify the formatter for 
   }
 }
 ```
+
+### IntelliJ
+
+This should work out of the box for IntelliJ (once the `eslint.config.js` file has been created). If it does not, follow the directions by [Ditlef Diseth here](https://youtrack.jetbrains.com/issue/WEB-61117/ESLint-flat-config-doesnt-work-with-non-default-custom-path-to-the-config-file#focus=Comments-27-8196242.0-0).
+
+## Usage
+
+Once your IDE settings are configured, you should unused variable warning in the three test files provided in `src/`. 
+
+You can format, lint and build the project from the command line by calling the commands in `package.json`,
+
+```json
+{    
+	"build": "npm run build-dev",
+  "build-dev": "tsc --project tsconfig.dev.json --noEmit",
+  "build-prod": "tsc --project tsconfig.prod.json --noEmit",
+  "lint": "ESLINT_USE_FLAT_CONFIG=true prettier --write . && eslint --config eslint.config.mjs --fix ."
+}
+```
+
+by running `npm run lint`, `npm run build`, etc.
 
 ## Author
 
