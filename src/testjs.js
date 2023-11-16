@@ -1,9 +1,8 @@
-let a = 0
-
-const advance = (x) => {
-  return x++
+const multiplyVars = (x, y) => {
+  return Number(x) * Number(y)
 }
 
-document.getElementById('abutton').addEventListener('click', () => {
-  a = advance(a)
+document.getElementById('aButton').addEventListener('click', () => {
+  const a = { c: 1, d: 2 }
+  const e = multiplyVars(a.c, a['d']) // e is unused and should give a warning
 })

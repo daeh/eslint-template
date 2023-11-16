@@ -4,22 +4,29 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "build": "tsc --project tsconfig.json --noEmit",
-    "lint": "ESLINT_USE_FLAT_CONFIG=true prettier --write . && eslint --config eslint.config.js . --fix",
-    "update-deps": "npm update --save"
+    "build": "npm run build-dev",
+    "build-dev": "tsc --project tsconfig.dev.json --noEmit",
+    "build-prod": "tsc --project tsconfig.prod.json --noEmit",
+    "lint": "ESLINT_USE_FLAT_CONFIG=true prettier --write . && eslint --config eslint.config.mjs --fix .",
+    "update-deps": "npm update --save",
+    "postinstall": "node ./scripts/linkconfig.mjs"
   },
   "devDependencies": {
     "@eslint/js": "^8.53.0",
     "@stylistic/eslint-plugin-js": "^1.2.0",
     "@stylistic/eslint-plugin-ts": "^1.2.0",
+    "@types/underscore": "^1.11.14",
     "@typescript-eslint/eslint-plugin": "^6.10.0",
     "@typescript-eslint/parser": "^6.10.0",
     "eslint": "^8.53.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-jsdoc": "^46.9.0",
     "eslint-plugin-prettier": "^5.0.1",
     "globals": "^13.23.0",
     "path": "^0.12.7",
-    "url": "^0.11.3"
+    "underscore": "^1.13.6",
+    "url": "^0.11.3",
+    "webppl": "^0.9.15"
   }
 }

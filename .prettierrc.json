@@ -15,17 +15,17 @@
       "files": "*.json",
       "options": {
         "printWidth": 400,
+        "trailingComma": "es5",
         "tabWidth": 2,
-        "useTabs": false,
         "singleQuote": false
       }
     },
     {
       "files": ["*.html"],
       "options": {
+        "printWidth": 200,
         "singleQuote": false,
-        "bracketSameLine": true,
-        "printWidth": 200
+        "bracketSameLine": true
       }
     }
   ]

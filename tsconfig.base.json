@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
     "module": "ESNext",
-    "target": "ES2020",
-    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "target": "ES6",
+    "lib": ["ES6", "DOM", "DOM.Iterable"],
     "noEmit": true,
     "skipLibCheck": true,
     "useDefineForClassFields": true,
@@ -10,6 +10,11 @@
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
-    "isolatedModules": true
-  }
+    "isolatedModules": true,
+    /* Enable javascript compilation */
+    "allowJs": true,
+    "checkJs": true
+  },
+  "include": ["**/*.ts", "**/*.mts", "**/*.cts", "**/*.tsx", "**/*.mtsx", "**/*.js", "**/*.mjs", "**/*.cjs", "**/*.jsx", "**/*.mjsx"],
+  "exclude": ["scripts"]
 }

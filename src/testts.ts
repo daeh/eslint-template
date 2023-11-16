@@ -1,13 +1,8 @@
-let c = 0
-let d = 0
-
-const advancets = () => {
-  c++
-  d++
+const sumVars = (x, y) => {
+  return Number(x) + Number(y)
 }
 
-const abutton = document.getElementById('abutton') as HTMLButtonElement
-
-abutton.addEventListener('click', () => {
-  advancets()
+;(document.getElementById('aButton') as HTMLButtonElement).addEventListener('click', () => {
+  const a = { c: 1, d: 2 }
+  const e = sumVars(a.c, a['d']) // e is unused and should give a warning
 })
