@@ -275,7 +275,7 @@ const config = [
     },
   },
   {
-    ignores: ['build/*', 'dist/*', 'scripts/*'],
+    ignores: ['dist/*', 'build/*', 'scripts/*'],
   },
 ]
 

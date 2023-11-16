@@ -4,7 +4,7 @@ This is a future-looking configuration that implements the major developments fr
 
 ### ESLint Config
 
-Beginning in ESLint `v9.0.0`, the default will be the new [flat config system](https://eslint.org/docs/latest/use/configure/configuration-files-new). This will depreciate the `Common.js Module` config system `.eslintrc.js`, replacing it with the `ES Module` config system  `eslint.config.js`.
+Beginning in ESLint `v9.0.0`, the default will be the new [flat config system](https://eslint.org/docs/latest/use/configure/configuration-files-new). This will depreciate the `Common.js Module` config system `.eslintrc.js`, replacing it with the `ES Module` config system `eslint.config.js`.
 
 ### ESLint Stylistic
 
@@ -12,7 +12,7 @@ ESLint is [depreciating formatting rules](https://eslint.org/blog/2023/10/deprec
 
 ## This Example Config
 
-The main file in this repot is the flat ESLint config, [eslint.config.mjs](https://github.com/daeh/eslint-template/blob/main/eslint.config.mjs). This project is configured as a `ES Module`, so this file could be named `eslint.config.js`, but I have given it the `.mjs` extension to make this config work for `Common.js Module` development with minimal reconfiguration. 
+The main file in this repot is the flat ESLint config, [eslint.config.mjs](https://github.com/daeh/eslint-template/blob/main/eslint.config.mjs). This project is configured as a `ES Module`, so this file could be named `eslint.config.js`, but I have given it the `.mjs` extension to make this config work for `Common.js Module` development with minimal reconfiguration.
 
 While `ESLint` has no issue using the `.mjs` file, IDEs like VS Code and IntelliJ currently require the `.js` extension. A simple workaround is to make an alias `eslint.config.js` that points to `eslint.config.mjs`. This is done automatically during install by the `package.json` file.
 
@@ -77,7 +77,7 @@ This should work out of the box for IntelliJ (once the `eslint.config.js` file h
 
 ## Usage
 
-Once your IDE settings are configured, you should unused variable warning in the three test files provided in `src/`. 
+Once your IDE settings are configured, you should unused variable warning in the three test files provided in `src/`.
 
 You can format, lint and build the project from the command line by calling the commands in `package.json`,
 
