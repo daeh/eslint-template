@@ -1,13 +1,13 @@
 import { promises as fs } from 'fs'
 import { platform } from 'os'
-import { join } from 'path'
-import { resolve, dirname } from 'path'
+import { dirname, join, resolve } from 'path'
 import { fileURLToPath } from 'url'
+
+const __dirname = dirname(fileURLToPath(import.meta.url))
+const projectDirname = resolve(dirname(__dirname))
 
 async function createLink() {
   // const packageRoot = process.env.INIT_CWD
-  const projectDirname = resolve(dirname(dirname(fileURLToPath(import.meta.url))))
-
   const sourceFile = join(projectDirname, 'eslint.config.mjs')
   const targetFile = join(projectDirname, 'eslint.config.js')
 
@@ -28,4 +28,6 @@ async function createLink() {
   }
 }
 
-createLink()
+createLink().catch((err) => {
+  console.error(err)
+})
