@@ -82,8 +82,8 @@ Once your IDE settings are configured, you should unused variable warning in the
 You can format, lint and build the project from the command line by calling the commands in `package.json`,
 
 ```json
-{    
-	"build": "npm run build-dev",
+{
+  "build": "npm run build-dev",
   "build-dev": "tsc --project tsconfig.dev.json --noEmit",
   "build-prod": "tsc --project tsconfig.prod.json --noEmit",
   "lint": "ESLINT_USE_FLAT_CONFIG=true prettier --write . && eslint --config eslint.config.mjs --fix ."
