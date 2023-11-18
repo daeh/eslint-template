@@ -2,6 +2,7 @@ import eslint from '@eslint/js'
 import * as espree from 'espree'
 import typescriptEslintPlugin from '@typescript-eslint/eslint-plugin'
 import typescriptEslintParser from '@typescript-eslint/parser'
+import defaultStylisticPlugin from '@stylistic/eslint-plugin'
 import typescriptStylisticPlugin from '@stylistic/eslint-plugin-ts'
 import javascriptStylisticPlugin from '@stylistic/eslint-plugin-js'
 import prettierPlugin from 'eslint-plugin-prettier'
@@ -12,10 +13,10 @@ import globals from 'globals'
 
 import jsDocPlugin from 'eslint-plugin-jsdoc'
 
-import WebPPLGlobals from './globals/globals.WebPPL.js'
-import WebPPLGlobalsenv from './globals/globals.WebPPLenv.js'
-import WebPPLGlobalsdists from './globals/globals.WebPPLdists.js'
-import WebPPLGlobalsJs from './globals/globals.WebPPLJs.js'
+import WebPPLGlobals from './globals/globals.WebPPL.mts'
+import WebPPLGlobalsenv from './globals/globals.WebPPLenv.mts'
+import WebPPLGlobalsdists from './globals/globals.WebPPLdists.mts'
+import WebPPLGlobalsJs from './globals/globals.WebPPLJs.mts'
 
 import { resolve, dirname } from 'path'
 import { fileURLToPath } from 'url'
@@ -35,29 +36,19 @@ const importRules = {
 
 const baseRules = {
   'prettier/prettier': 'warn',
-}
-
-const typescriptRules = {
-  'max-len': [
+  '@stylistic/max-len': [
     'warn',
     { code: 120, ignoreComments: true, ignoreTrailingComments: true, ignoreStrings: true, ignoreUrls: true },
   ],
-  '@stylistic/ts/indent': ['error', 2, { SwitchCase: 1 }],
-  '@stylistic/ts/semi': ['error', 'never'],
-  '@stylistic/ts/quotes': ['warn', 'single', { avoidEscape: true, allowTemplateLiterals: false }],
-  '@stylistic/ts/object-curly-spacing': ['warn', 'always'],
+  '@stylistic/indent': ['error', 2, { SwitchCase: 1 }],
+  '@stylistic/semi': ['error', 'never'],
+  '@stylistic/quotes': ['warn', 'single', { avoidEscape: true, allowTemplateLiterals: false }],
+  '@stylistic/object-curly-spacing': ['warn', 'always'],
 }
 
-const javascriptRules = {
-  '@stylistic/js/max-len': [
-    'warn',
-    { code: 120, ignoreComments: true, ignoreTrailingComments: true, ignoreStrings: true, ignoreUrls: true },
-  ],
-  '@stylistic/js/indent': ['error', 2, { SwitchCase: 1 }],
-  '@stylistic/js/semi': ['error', 'never'],
-  '@stylistic/js/quotes': ['warn', 'single', { avoidEscape: true, allowTemplateLiterals: false }],
-  '@stylistic/js/object-curly-spacing': ['warn', 'always'],
-}
+const typescriptRules = {}
+
+const javascriptRules = {}
 
 const typescriptRulesDev = {
   '@typescript-eslint/no-explicit-any': ['warn'], // default warn
@@ -100,15 +91,15 @@ const config = [
     },
     plugins: {
       '@typescript-eslint': typescriptEslintPlugin,
-      '@stylistic/ts': typescriptStylisticPlugin,
+      '@stylistic': defaultStylisticPlugin,
       'import': pluginImport,
       'prettier': prettierPlugin,
     },
     rules: {
-      ...typescriptStylisticPlugin.configs['disable-legacy'].rules,
       ...prettierConfig.rules,
       ...pluginImportConfig.rules,
       ...typescriptEslintPlugin.configs['stylistic-type-checked'].rules,
+      ...typescriptStylisticPlugin.configs['disable-legacy'].rules,
       ...typescriptEslintPlugin.configs.recommended.rules,
       ...typescriptEslintPlugin.configs['recommended-type-checked'].rules,
       //
@@ -134,15 +125,15 @@ const config = [
     },
     plugins: {
       '@typescript-eslint': typescriptEslintPlugin,
-      '@stylistic/js': javascriptStylisticPlugin,
+      '@stylistic': defaultStylisticPlugin,
       'import': pluginImport,
       'prettier': prettierPlugin,
     },
     rules: {
-      ...javascriptStylisticPlugin.configs['disable-legacy'].rules,
       ...prettierConfig.rules,
       ...pluginImportConfig.rules,
       ...typescriptEslintPlugin.configs['stylistic'].rules,
+      ...javascriptStylisticPlugin.configs['disable-legacy'].rules,
       ...typescriptEslintPlugin.configs.recommended.rules,
       ...typescriptEslintPlugin.configs['recommended-type-checked'].rules,
       //
@@ -160,14 +151,14 @@ const config = [
     files: [`**/*.config.{${allTsExtensions}}`],
     plugins: {
       '@typescript-eslint': typescriptEslintPlugin,
-      '@stylistic/ts': typescriptStylisticPlugin,
+      '@stylistic': defaultStylisticPlugin,
       'import': pluginImport,
       'prettier': prettierPlugin,
     },
     rules: {
-      ...typescriptStylisticPlugin.configs['disable-legacy'].rules,
       ...prettierConfig.rules,
       ...typescriptEslintPlugin.configs['stylistic-type-checked'].rules,
+      ...typescriptStylisticPlugin.configs['disable-legacy'].rules,
       ...baseRules,
       ...typescriptRules,
       '@typescript-eslint/prefer-nullish-coalescing': ['off'],
@@ -178,14 +169,14 @@ const config = [
     files: [`**/*.config.{${allJsExtensions}}`],
     plugins: {
       '@typescript-eslint': typescriptEslintPlugin,
-      '@stylistic/js': javascriptStylisticPlugin,
+      '@stylistic': defaultStylisticPlugin,
       'import': pluginImport,
       'prettier': prettierPlugin,
     },
     rules: {
-      ...javascriptStylisticPlugin.configs['disable-legacy'].rules,
       ...prettierConfig.rules,
       ...typescriptEslintPlugin.configs['stylistic'].rules,
+      ...javascriptStylisticPlugin.configs['disable-legacy'].rules,
       ...typescriptEslintPlugin.configs.recommended.rules,
       ...typescriptEslintPlugin.configs['recommended-type-checked'].rules,
       ...typescriptEslintPlugin.configs.strict.rules,
@@ -228,14 +219,14 @@ const config = [
     },
     plugins: {
       'jsdoc': jsDocPlugin,
-      '@stylistic/js': javascriptStylisticPlugin,
+      '@stylistic': defaultStylisticPlugin,
     },
     rules: {
       'jsdoc/check-tag-names': 'error',
       'jsdoc/check-types': 'error',
       ...javascriptStylisticPlugin.configs['disable-legacy'].rules,
       ...eslint.configs.recommended.rules,
-      '@stylistic/js/indent': [
+      '@stylistic/indent': [
         'error',
         2,
         {
@@ -244,9 +235,9 @@ const config = [
           ArrayExpression: 'first',
         },
       ],
-      '@stylistic/js/semi': ['error', 'never'],
-      '@stylistic/js/quotes': ['warn', 'single', { avoidEscape: true, allowTemplateLiterals: false }],
-      '@stylistic/js/space-before-function-paren': [
+      '@stylistic/semi': ['error', 'never'],
+      '@stylistic/quotes': ['warn', 'single', { avoidEscape: true, allowTemplateLiterals: false }],
+      '@stylistic/space-before-function-paren': [
         'error',
         {
           anonymous: 'never',
@@ -254,8 +245,8 @@ const config = [
           asyncArrow: 'always',
         },
       ],
-      '@stylistic/js/linebreak-style': ['error', 'unix'],
-      '@stylistic/js/no-console': ['off'],
+      '@stylistic/linebreak-style': ['error', 'unix'],
+      '@stylistic/no-console': ['off'],
       'no-unused-vars': ['warn'],
       // 'no-constant-condition': [
       //   'error',
