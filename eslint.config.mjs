@@ -13,10 +13,10 @@ import globals from 'globals'
 
 import jsDocPlugin from 'eslint-plugin-jsdoc'
 
-import WebPPLGlobals from './globals/globals.WebPPL.mts'
-import WebPPLGlobalsenv from './globals/globals.WebPPLenv.mts'
-import WebPPLGlobalsdists from './globals/globals.WebPPLdists.mts'
-import WebPPLGlobalsJs from './globals/globals.WebPPLJs.mts'
+import WebPPLGlobals from './globals/globalsWebPPL.js'
+import WebPPLGlobalsenv from './globals/globalsWebPPLenv.js'
+import WebPPLGlobalsdists from './globals/globalsWebPPLdists.js'
+import WebPPLGlobalsJs from './globals/globalsWebPPLJs.js'
 
 import { resolve, dirname } from 'path'
 import { fileURLToPath } from 'url'

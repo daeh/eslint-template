@@ -10,7 +10,7 @@
     "lint": "ESLINT_USE_FLAT_CONFIG=true prettier --write . && eslint --config eslint.config.mjs --fix .",
     "checker": "ESLINT_USE_FLAT_CONFIG=true prettier . && eslint --config eslint.config.mjs",
     "check": "ESLINT_USE_FLAT_CONFIG=true prettier . && eslint --config eslint.config.mjs . && tsc --project tsconfig.dev.json --noEmit",
-    "postinstall": "node ./scripts/linkconfig.mjs"
+    "postinstall": "node ./scripts/linkconfig.js"
   },
   "devDependencies": {
     "@eslint/js": "^8.53.0",
