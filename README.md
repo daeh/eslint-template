@@ -14,7 +14,7 @@ ESLint is [depreciating formatting rules](https://eslint.org/blog/2023/10/deprec
 
 The main file in this repot is the flat ESLint config, [eslint.config.mjs](https://github.com/daeh/eslint-template/blob/main/eslint.config.mjs). This project is configured as a `ES Module`, so this file could be named `eslint.config.js`, but I have given it the `.mjs` extension to make this config work for `Common.js Module` development with minimal reconfiguration.
 
-While `ESLint` has no issue using the `.mjs` file, IDEs like _VS Code_ and _IntelliJ IDEA_ currently require the `.js` extension. A simple workaround is to make an alias `eslint.config.js` that points to `eslint.config.mjs`. This is done automatically during install by the `package.json` file.
+While ESLint has no issue using the `.mjs` file, IDEs like_VS Code and_IntelliJ IDEA currently require the `.js` extension. A simple workaround is to make an alias `eslint.config.js` that points to `eslint.config.mjs`. This is done automatically during install by the `package.json` file.
 
 This project uses **Typescript** and **Prettier**, and includes the `tsconfig.json` and `.prettierrc.json` files. The ESLint config integrates these configurations.
 
@@ -71,7 +71,7 @@ For VS Code to respect the configuration, you need to specify the formatter for 
 }
 ```
 
-### IntelliJ
+### IntelliJ IDEA Settings
 
 This should work out of the box for IntelliJ (once the `eslint.config.js` file has been created). Make sure you have enabled ESLint and Prettier for the project:
 
