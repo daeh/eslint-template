@@ -12,9 +12,9 @@ ESLint is [depreciating formatting rules](https://eslint.org/blog/2023/10/deprec
 
 ## This Example Config
 
-The main file in this repot is the flat ESLint config, [eslint.config.mjs](https://github.com/daeh/eslint-template/blob/main/eslint.config.mjs). This project is configured as a `ES Module`, so this file could be named `eslint.config.js`, but I have given it the `.mjs` extension to make this config work for `Common.js Module` development with minimal reconfiguration.
+The main file in this repo is the flat ESLint config, [eslint.config.mjs](https://github.com/daeh/eslint-template/blob/main/eslint.config.mjs). This project is configured as a `ES Module`, so this file could be named `eslint.config.js`, but I have given it the `.mjs` extension to make this config work for `Common.js Module` development with minimal reconfiguration.
 
-While ESLint has no issue using the `.mjs` file, IDEs like_VS Code and_IntelliJ IDEA currently require the `.js` extension. A simple workaround is to make an alias `eslint.config.js` that points to `eslint.config.mjs`. This is done automatically during install by the `package.json` file.
+While ESLint has no issue using the `.mjs` config file, IDEs like VS Code and IntelliJ IDEA currently require the `.js` extension. A simple workaround is to make an alias `eslint.config.js` that points to `eslint.config.mjs`. This is done automatically during install by the `package.json` file.
 
 This project uses **Typescript** and **Prettier**, and includes the `tsconfig.json` and `.prettierrc.json` files. The ESLint config integrates these configurations.
 
@@ -33,7 +33,7 @@ git clone --branch main https://github.com/daeh/eslint-template.git eslint-templ
 ### Enter the new directory
 cd eslint-template
 
-### Install
+### Install Node packages
 npm install
 ```
 
@@ -41,7 +41,7 @@ In addition to installing the dependancies, this will create the `eslint.config.
 
 ### VS Code Settings
 
-For VS Code to respect the configuration, you need to specify the formatter for the relevant files. This is done for you in `.vscode/settings.json`, which is copied bellow. This tells VS Code to use the ESLint flat config system, to use the [Prettier - Code Formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) extension to format Javascript, HTML, JSON, and CSS files, and let ESLint format WebPPL files. This obviously requires the [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) extensions to be enabled for the workspace.
+For VS Code to respect the configuration, you need to specify the formatter for the relevant files. This is done for you in `.vscode/settings.json`, which is copied bellow. This configures VS Code to use the ESLint flat config system, to use the [Prettier - Code Formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) extension to format Javascript, HTML, JSON, and CSS files, and let ESLint format WebPPL files. This obviously requires the [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) extensions to be enabled for the workspace.
 
 ```json
 {

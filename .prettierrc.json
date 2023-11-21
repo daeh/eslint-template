@@ -12,7 +12,7 @@
   "proseWrap": "never",
   "overrides": [
     {
-      "files": "*.json",
+      "files": ["*.json"],
       "options": {
         "printWidth": 400,
         "trailingComma": "es5",

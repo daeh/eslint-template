@@ -5,33 +5,28 @@
     }
   ],
   "settings": {
-    "workbench.colorCustomizations": {
-      "editor.formatOnSave": true,
-      "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": true
-      },
-      "files.associations": {
-        "*.wppl": "javascript"
-      },
-      "eslint.experimental.useFlatConfig": true,
-      "[javascript][javascriptreact][typescript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-      },
-      "[wppl]": {
-        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
-      },
-      "[html]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-      },
-      "[json][jsonc]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-      },
-      "[css][scss][less]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-      },
-      "activityBar.background": "#17340E",
-      "titleBar.activeBackground": "#204913",
-      "titleBar.activeForeground": "#F7FCF5"
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    },
+    "files.associations": {
+      "*.wppl": "javascript"
+    },
+    "eslint.experimental.useFlatConfig": true,
+    "[javascript][javascriptreact][typescript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[wppl]": {
+      "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    },
+    "[html]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[json][jsonc]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[css][scss][less]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
     }
   }
 }

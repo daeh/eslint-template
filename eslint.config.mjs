@@ -51,7 +51,7 @@ const typescriptRules = {}
 const javascriptRules = {}
 
 const typescriptRulesDev = {
-  '@typescript-eslint/no-explicit-any': ['warn'], // default warn
+  '@typescript-eslint/no-explicit-any': ['warn'],
   '@typescript-eslint/no-unused-vars': ['warn'],
   '@typescript-eslint/prefer-nullish-coalescing': ['off'],
   '@typescript-eslint/no-inferrable-types': ['off'],
