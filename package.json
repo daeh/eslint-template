@@ -8,7 +8,7 @@
     "build-dev": "tsc --project tsconfig.dev.json --noEmit",
     "build-prod": "tsc --project tsconfig.prod.json --noEmit",
     "lint": "ESLINT_USE_FLAT_CONFIG=true prettier --write . && eslint --config eslint.config.mjs --fix .",
-    "postinstall": "node ./scripts/linkconfig.js"
+    "postinstall": "node ./scripts/linkconfig.mjs"
   },
   "devDependencies": {
     "@eslint/js": "^8.53.0",
