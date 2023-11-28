@@ -1,1 +1,5 @@
 **/*.wppl
+#**/.vscode
+**/.idea
+**/build
+**/dist

@@ -1,20 +1,23 @@
 {
   "compilerOptions": {
     "module": "ESNext",
-    "target": "ES6",
-    "lib": ["ES6", "DOM", "DOM.Iterable"],
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "noEmit": true,
-    // "skipLibCheck": true, // enable for temp fix for vue
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
     "useDefineForClassFields": true,
-    /* Bundler mode */
+    /* Type Checking */
+    "noFallthroughCasesInSwitch": true,
+    /* Bundler Mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     // "isolatedModules": true, // for bundlers like vite
-    /* Enable javascript compilation */
+    /* Enable JavaScript Compilation */
     "allowJs": true,
     "checkJs": true
   },
   "include": ["**/*.ts", "**/*.mts", "**/*.cts", "**/*.tsx", "**/*.mtsx", "**/*.js", "**/*.mjs", "**/*.cjs", "**/*.jsx", "**/*.mjsx"],
-  "exclude": ["dist/*", "build/*", "scripts/*"]
+  "exclude": ["dist", "build"]
 }

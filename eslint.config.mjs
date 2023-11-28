@@ -1,25 +1,24 @@
+import { dirname, resolve } from 'path'
+import { fileURLToPath } from 'url'
+
 import eslint from '@eslint/js'
-import * as espree from 'espree'
+import defaultStylisticPlugin from '@stylistic/eslint-plugin'
+import javascriptStylisticPlugin from '@stylistic/eslint-plugin-js'
+import typescriptStylisticPlugin from '@stylistic/eslint-plugin-ts'
 import typescriptEslintPlugin from '@typescript-eslint/eslint-plugin'
 import typescriptEslintParser from '@typescript-eslint/parser'
-import defaultStylisticPlugin from '@stylistic/eslint-plugin'
-import typescriptStylisticPlugin from '@stylistic/eslint-plugin-ts'
-import javascriptStylisticPlugin from '@stylistic/eslint-plugin-js'
-import prettierPlugin from 'eslint-plugin-prettier'
 import prettierConfig from 'eslint-config-prettier'
 import pluginImport from 'eslint-plugin-import'
 import pluginImportConfig from 'eslint-plugin-import/config/recommended.js'
+import jsDocPlugin from 'eslint-plugin-jsdoc'
+import prettierPlugin from 'eslint-plugin-prettier'
+import * as espree from 'espree'
 import globals from 'globals'
 
-import jsDocPlugin from 'eslint-plugin-jsdoc'
-
-import WebPPLGlobals from './globals/globalsWebPPL.js'
-import WebPPLGlobalsenv from './globals/globalsWebPPLenv.js'
-import WebPPLGlobalsdists from './globals/globalsWebPPLdists.js'
-import WebPPLGlobalsJs from './globals/globalsWebPPLJs.js'
-
-import { resolve, dirname } from 'path'
-import { fileURLToPath } from 'url'
+import WebPPLGlobals from './globals/globalsWebPPL.mjs'
+import WebPPLGlobalsdists from './globals/globalsWebPPLdists.mjs'
+import WebPPLGlobalsenv from './globals/globalsWebPPLenv.mjs'
+import WebPPLGlobalsJs from './globals/globalsWebPPLJs.mjs'
 
 const projectDirname = dirname(fileURLToPath(import.meta.url))
 
@@ -32,6 +31,26 @@ const allExtensions = [...allTsExtensionsArray, ...allJsExtensionsArray].join(',
 
 const importRules = {
   'import/no-unresolved': 'error',
+  'import/order': [
+    'error',
+    {
+      'groups': [
+        'builtin', // Built-in imports (come from NodeJS native) go first
+        'external', // <- External imports
+        'internal', // <- Absolute imports
+        ['sibling', 'parent'], // <- Relative imports, the sibling and parent types they can be mingled together
+        'index', // <- index imports
+        'unknown', // <- unknown
+      ],
+      'newlines-between': 'always',
+      'alphabetize': {
+        /* sort in ascending order. Options: ["ignore", "asc", "desc"] */
+        order: 'asc',
+        /* ignore case. Options: [true, false] */
+        caseInsensitive: true,
+      },
+    },
+  ],
 }
 
 const baseRules = {
@@ -44,6 +63,7 @@ const baseRules = {
   '@stylistic/semi': ['error', 'never'],
   '@stylistic/quotes': ['warn', 'single', { avoidEscape: true, allowTemplateLiterals: false }],
   '@stylistic/object-curly-spacing': ['warn', 'always'],
+  '@stylistic/array-element-newline': ['error', 'consistent'],
 }
 
 const typescriptRules = {}
@@ -56,12 +76,10 @@ const typescriptRulesDev = {
   '@typescript-eslint/prefer-nullish-coalescing': ['off'],
   '@typescript-eslint/no-inferrable-types': ['off'],
   '@typescript-eslint/dot-notation': ['off'],
-  'sort-imports': ['error', { ignoreCase: true, ignoreDeclarationSort: true }],
 }
 
 const javascriptRulesDev = {
   '@typescript-eslint/no-unused-vars': ['warn'],
-  'sort-imports': ['error', { ignoreCase: true, ignoreDeclarationSort: true }],
 }
 
 const config = [
@@ -159,6 +177,7 @@ const config = [
       ...prettierConfig.rules,
       ...typescriptEslintPlugin.configs['stylistic-type-checked'].rules,
       ...typescriptStylisticPlugin.configs['disable-legacy'].rules,
+      ...importRules,
       ...baseRules,
       ...typescriptRules,
       '@typescript-eslint/prefer-nullish-coalescing': ['off'],
@@ -167,6 +186,13 @@ const config = [
   {
     /* config files: javascript */
     files: [`**/*.config.{${allJsExtensions}}`],
+    settings: {
+      'import/resolver': {
+        typescript: {
+          project: './tsconfig.json',
+        },
+      },
+    },
     plugins: {
       '@typescript-eslint': typescriptEslintPlugin,
       '@stylistic': defaultStylisticPlugin,
@@ -180,10 +206,11 @@ const config = [
       ...typescriptEslintPlugin.configs.recommended.rules,
       ...typescriptEslintPlugin.configs['recommended-type-checked'].rules,
       ...typescriptEslintPlugin.configs.strict.rules,
+      ...importRules,
       ...baseRules,
       ...javascriptRules,
       '@typescript-eslint/no-unused-vars': ['warn'],
-      '@typescript-eslint/no-unsafe-call': ['off'],
+      '@typescript-eslint/no-unsafe-call': ['warn'],
       '@typescript-eslint/no-unsafe-member-access': ['off'],
       '@typescript-eslint/no-unsafe-assignment': ['off'],
     },
@@ -266,7 +293,7 @@ const config = [
     },
   },
   {
-    ignores: ['dist/*', 'build/*', 'scripts/*'],
+    ignores: ['dist', 'build'],
   },
 ]
 

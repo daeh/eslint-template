@@ -2,7 +2,7 @@
 
 This is a future-looking configuration that implements the major developments from [ESLint](https://eslint.org).
 
-### ESLint Config
+### ESLint Flat Config System
 
 Beginning in ESLint `v9.0.0`, the default will be the new [flat config system](https://eslint.org/docs/latest/use/configure/configuration-files-new). This will depreciate the `Common.js Module` config system (which uses `.eslintrc.js`), replacing it with the `ES Module` config system (which uses `eslint.config.js`).
 
@@ -16,18 +16,23 @@ The main file in this repo is the flat ESLint config, [eslint.config.mjs](https:
 
 While ESLint has no issue using the `.mjs` config file, IDEs like VS Code and IntelliJ IDEA currently require the `.js` extension. A simple workaround is to make an alias `eslint.config.js` that points to `eslint.config.mjs`. This is done automatically during install by the `package.json` file.
 
-This project uses **Typescript** and **Prettier**, and includes the `tsconfig.json` and `.prettierrc.json` files. The ESLint config integrates these configurations.
+This project uses **TypeScript** and **Prettier**, and includes the `tsconfig.json` and `.prettierrc.json` files. The ESLint config integrates these configurations.
 
 ### WebPPL
 
-I have included an example of how to use ESLint to format [WebPPL](https://webppl.readthedocs.io/en/master/) code. All of the WebPPL-specific configuration can be removed if not desired without affecting the linting and formatting of Javascript and Typescript.
+I have included an example of how to use ESLint to format [WebPPL](https://webppl.readthedocs.io/en/master/) code. All of the WebPPL-specific configuration can be removed if not desired without affecting the linting and formatting of JavaScript and TypeScript.
 
 ## Installation
 
-Install the dependancies using [npm](https://www.npmjs.com/) or [Yarn](https://yarnpkg.com/), e.g.
+- Fork this repo: `Use this template` > `Create a new repository`
+- Git clone the forked repo
+- Enter the repo folder
+
+- Install the dependancies using [npm](https://www.npmjs.com/) or [Yarn](https://yarnpkg.com/), e.g.
 
 ```shell
-### Clone git repo to the current working directory
+### Clone your forked repo to the current working directory
+### Replace `daeh/eslint-template` with your username and repo name
 git clone --branch main https://github.com/daeh/eslint-template.git eslint-template
 
 ### Enter the new directory
@@ -49,10 +54,10 @@ For VS Code to respect the configuration, you need to specify the formatter for 
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
+  "eslint.experimental.useFlatConfig": true,
   "files.associations": {
     "*.wppl": "javascript"
   },
-  "eslint.experimental.useFlatConfig": true,
   "[javascript][javascriptreact][typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -93,13 +98,12 @@ You can format, lint and build the project from the command line by calling the 
 ```json
 {
   "scripts": {
-    "build": "tsc --project tsconfig.dev.json --noEmit",
     "lint": "ESLINT_USE_FLAT_CONFIG=true prettier --write . && eslint --config eslint.config.mjs --fix ."
   }
 }
 ```
 
-by running `npm run lint`, `npm run build`, etc.
+by running `npm run lint`, etc.
 
 ## Author
 
