@@ -16,9 +16,9 @@ import * as espree from 'espree'
 import globals from 'globals'
 
 import WebPPLGlobals from './globals/globalsWebPPL.mjs'
-import WebPPLGlobalsdists from './globals/globalsWebPPLdists.mjs'
-import WebPPLGlobalsenv from './globals/globalsWebPPLenv.mjs'
-import WebPPLGlobalsJs from './globals/globalsWebPPLJs.mjs'
+import WebPPLdistGlobals from './globals/globalsWebPPLdists.mjs'
+import WebPPLenvGlobals from './globals/globalsWebPPLenv.mjs'
+import WebPPLjsGlobals from './globals/globalsWebPPLJs.mjs'
 
 const projectDirname = dirname(fileURLToPath(import.meta.url))
 
@@ -216,7 +216,7 @@ const config = [
     },
   },
   {
-    /* webppl specific parser */
+    /* WebPPL espree parser */
     files: ['**/*.wppl'],
     languageOptions: {
       sourceType: 'script',
@@ -229,9 +229,9 @@ const config = [
         ...globals.node,
         ...globals.es2017,
         ...WebPPLGlobals,
-        ...WebPPLGlobalsenv,
-        ...WebPPLGlobalsdists,
-        ...WebPPLGlobalsJs,
+        ...WebPPLenvGlobals,
+        ...WebPPLdistGlobals,
+        ...WebPPLjsGlobals,
         _: 'readonly',
         json: 'readonly',
         globalStore: true,

@@ -3,21 +3,28 @@
     "module": "ESNext",
     "target": "ES2022",
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
-    "noEmit": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "useDefineForClassFields": true,
-    /* Type Checking */
-    "noFallthroughCasesInSwitch": true,
+
     /* Bundler Mode */
     "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "resolveJsonModule": true,
-    // "isolatedModules": true, // for bundlers like vite
+    "noEmit": true,
+    "esModuleInterop": false,
+    // "allowSyntheticDefaultImports": false,
+    // "allowImportingTsExtensions": true,
+    // "resolveJsonModule": true,
+
+    /* Linting */
+    "strict": true,
+    "skipLibCheck": true, // enable for temp fix
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true,
+    "useDefineForClassFields": true,
+
     /* Enable JavaScript Compilation */
     "allowJs": true,
     "checkJs": true
   },
-  "include": ["**/*.ts", "**/*.mts", "**/*.cts", "**/*.tsx", "**/*.mtsx", "**/*.js", "**/*.mjs", "**/*.cjs", "**/*.jsx", "**/*.mjsx"],
+  "include": ["types/*.d.ts", "**/*.ts", "**/*.mts", "**/*.cts", "**/*.tsx", "**/*.mtsx", "**/*.js", "**/*.mjs", "**/*.cjs", "**/*.jsx", "**/*.mjsx"],
   "exclude": ["dist", "build"]
 }

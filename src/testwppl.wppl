@@ -1,14 +1,21 @@
 /**
- * Underscore.js library
+ * Underscore.js library for JSDoc
  * @type {import('underscore')}
  */
 
-var asample = sample(Gaussian({mu: 0, sigma: 1})) // asample is unused and should give a warning
+const divideVars = function(x, y) {
+  return x / y
+}
+
+const d = sample(Gaussian({mu: 0, sigma: 1}))
+const a = { c: 1, d: d }
+const e = divideVars(a.c, a['d']) // e is unused and should give a warning
+display('e is : ' + e)
 
 // Define a function using two external primitives:
 // 1. Javascript's `JSON.stringify` for converting to strings
 // 2. Underscore's _.isFinite for checking if a value is a finite number
-var coerceToPositiveNumber = function(x) {
+const coerceToPositiveNumber = function(x) {
   if (_.isFinite(x) && x > 0) {
     return x
   } else {
@@ -19,20 +26,20 @@ var coerceToPositiveNumber = function(x) {
 }
 
 // Create an array with numbers, an object, an a Boolean
-var inputs = [2, 3.5, -1, { key: 1 }, true]
+const inputs = [2, 3.5, -1, { key: 1 }, true]
 
 // Map the function over the array
 print('Processing elements in array ' + JSON.stringify(inputs) + '...')
-var result = map(coerceToPositiveNumber, inputs)
+const result = map(coerceToPositiveNumber, inputs)
 print('Result: ' + JSON.stringify(result))
 
-var makeCoin = function(weight) {
+const makeCoin = function(weight) {
   return function() { return flip(weight) ? 'h' : 't' }
 }
 
-var fairCoin = makeCoin(0.5)
-var trickCoin = makeCoin(0.95)
-var bentCoin = makeCoin(0.25)
+const fairCoin = makeCoin(0.5)
+const trickCoin = makeCoin(0.95)
+const bentCoin = makeCoin(0.25)
 
 viz(repeat(20, fairCoin))
 viz(repeat(20, trickCoin))
