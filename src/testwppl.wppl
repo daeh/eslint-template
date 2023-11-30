@@ -7,9 +7,10 @@ const divideVars = function(x, y) {
   return x / y
 }
 
-const d = sample(Gaussian({mu: 0, sigma: 1}))
-const a = { c: 1, d: d }
-const e = divideVars(a.c, a['d']) // e is unused and should give a warning
+const a = { b: 1, c: 2 }
+const d = divideVars(a.b, a['c']) // d is unused and should give a warning
+
+const e = sample(Gaussian({mu: 0, sigma: 1}))
 display('e is : ' + e)
 
 // Define a function using two external primitives:

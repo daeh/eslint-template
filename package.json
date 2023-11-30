@@ -5,7 +5,6 @@
   "type": "module",
   "scripts": {
     "build": "npm run build-dev",
-    "build-dev": "tsc --project tsconfig.dev.json --noEmit",
     "build-prod": "tsc --project tsconfig.prod.json --noEmit",
     "lint": "ESLINT_USE_FLAT_CONFIG=true prettier --config .prettierrc.json --write . && eslint --config eslint.config.mjs --fix . && tsc --project tsconfig.json --noEmit",
     "postinstall": "node ./scripts/linkconfig.mjs"
@@ -26,6 +25,8 @@
     "eslint-plugin-jsdoc": "^46.9.0",
     "eslint-plugin-prettier": "^5.0.1",
     "globals": "^13.23.0",
+    "prettier": "^3.1.0",
+    "typescript": "^5.3.2",
     "underscore": "^1.13.6",
     "webppl": "^0.9.15"
   }

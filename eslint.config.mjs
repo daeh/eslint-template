@@ -31,23 +31,33 @@ const allExtensions = [...allTsExtensionsArray, ...allJsExtensionsArray].join(',
 
 const importRules = {
   'import/no-unresolved': 'error',
+  'sort-imports': [
+    'error',
+    {
+      allowSeparatedGroups: true,
+      ignoreCase: true,
+      ignoreDeclarationSort: true,
+      ignoreMemberSort: false,
+      memberSyntaxSortOrder: ['none', 'all', 'multiple', 'single'],
+    },
+  ],
   'import/order': [
     'error',
     {
       'groups': [
         'builtin', // Built-in imports (come from NodeJS native) go first
-        'external', // <- External imports
-        'internal', // <- Absolute imports
-        ['sibling', 'parent'], // <- Relative imports, the sibling and parent types they can be mingled together
-        'index', // <- index imports
-        'unknown', // <- unknown
+        'external', // External imports
+        'internal', // Absolute imports
+        'parent', // Relative imports
+        'sibling', // Relative imports
+        // ['sibling', 'parent'], // Relative imports, the sibling and parent types they can be mingled together
+        'index', // index imports
+        'unknown', // unknown
       ],
       'newlines-between': 'always',
       'alphabetize': {
-        /* sort in ascending order. Options: ["ignore", "asc", "desc"] */
         order: 'asc',
-        /* ignore case. Options: [true, false] */
-        caseInsensitive: true,
+        caseInsensitive: true, // ignore case
       },
     },
   ],

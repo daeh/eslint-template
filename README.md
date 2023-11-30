@@ -28,7 +28,7 @@ I have included an example of how to use ESLint to format [WebPPL](https://webpp
 - Git clone the forked repo
 - Enter the repo folder
 
-- Install the dependancies using [npm](https://www.npmjs.com/) or [Yarn](https://yarnpkg.com/), e.g.
+- Install the dependancies using [Yarn](https://yarnpkg.com/) or [npm](https://www.npmjs.com/), e.g.
 
 ```shell
 ### Clone your forked repo to the current working directory
@@ -39,7 +39,7 @@ git clone --branch main https://github.com/daeh/eslint-template.git eslint-templ
 cd eslint-template
 
 ### Install Node packages
-npm install
+yarn install ### or npm install
 ```
 
 In addition to installing the dependancies, this will create the `eslint.config.js` link to `eslint.config.mjs`.
@@ -98,12 +98,12 @@ You can format, lint and build the project from the command line by calling the 
 ```json
 {
   "scripts": {
-    "lint": "ESLINT_USE_FLAT_CONFIG=true prettier --write . && eslint --config eslint.config.mjs --fix ."
+    "lint": "ESLINT_USE_FLAT_CONFIG=true prettier --config .prettierrc.json --write . && eslint --config eslint.config.mjs --fix . && tsc --project tsconfig.json --noEmit"
   }
 }
 ```
 
-by running `npm run lint`, etc.
+by running `yarn lint` or `npm run lint`, etc.
 
 ## Author
 

@@ -1,4 +1,4 @@
-import { promises as fs, constants } from 'fs'
+import { constants, promises as fs } from 'fs'
 import { platform } from 'os'
 import { dirname, join, resolve } from 'path'
 import { fileURLToPath } from 'url'

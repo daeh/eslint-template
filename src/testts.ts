@@ -3,6 +3,6 @@ const sumVars = (x, y) => {
 }
 
 ;(document.getElementById('aButton') as HTMLButtonElement).addEventListener('click', () => {
-  const a = { c: 1, d: 2 }
-  const e = sumVars(a.c, a['d']) // e is unused and should give a warning
+  const a = { b: 1, c: 2 }
+  const d = sumVars(a.b, a['c']) // d is unused and should give a warning
 })
