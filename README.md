@@ -46,7 +46,7 @@ In addition to installing the dependancies, this will create the `eslint.config.
 
 ### VS Code Settings
 
-For VS Code to respect the configuration, you need to specify the formatter for the relevant files. This is done for you in `.vscode/settings.json`, which is copied bellow. This configures VS Code to use the ESLint flat config system, to use the [Prettier - Code Formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) extension to format Javascript, HTML, JSON, and CSS files, and let ESLint format WebPPL files. This obviously requires the [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) extensions to be enabled for the workspace.
+For [VS Code](https://code.visualstudio.com/) to respect the configuration, you need to specify the formatter for the relevant files. This is done for you in [`VSCodeProject.code-workspace`](VSCodeProject.code-workspace) and in [`.vscode/settings.json`](.vscode/settings.json) (these are redundant, you only need one). This configures the [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) extension to use the flat config system, makes VS Code use the [Prettier - Code Formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) extensions for formatting Javascript, HTML, JSON, and CSS files, and lets ESLint format WebPPL files. This obviously requires the [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) extensions to be enabled for the workspace. Activate the `VSCodeProject.code-workspace` via `File > Open Workspace from File...` (or by double clicking it), activate `.vscode` via `File > Open Folder...` in VS Code.
 
 ```json
 {
@@ -78,14 +78,18 @@ For VS Code to respect the configuration, you need to specify the formatter for 
 
 ### IntelliJ IDEA Settings
 
-This should work out of the box for IntelliJ (once the `eslint.config.js` file has been created). Make sure you have enabled ESLint and Prettier for the project:
+This project should mostly work out of the box for [IntelliJ IDEA](https://www.jetbrains.com/idea/) / [WebStorm](https://www.jetbrains.com/webstorm/) (once the `eslint.config.js` file has been created). Make sure you have enabled ESLint and Prettier for the project:
 
 - `Settings... > Languages & Frameworks > JavaScript > Code Quality Tools > ESLint`
   - Enable `Automatic ESLint configuration`
   - Enable `Run eslint --fix on save`
+  - Add the additional filetypes to the `Run for files` field:
+    - `{**/*,*}.{ts,mts,cts,tsx,mtsx,js,mjs,cjs,jsx,mjsx,html,wppl}`
 - `Settings... > Languages & Frameworks > JavaScript > Prettier`
   - Enable `Automatic Prettier configuration`
   - Enable `Run on save`
+  - Add the additional filetypes to the `Run for files` field:
+    - `{**/*,*}.{ts,mts,cts,tsx,mtsx,js,mjs,cjs,jsx,mjsx,json,html,css,scss,vue,astro}`
 
 If you change the project from an `ES Module` to a `Common.js Module`, or if ESLint isn't working, try [this fix from Ditlef Diseth](https://youtrack.jetbrains.com/issue/WEB-61117/ESLint-flat-config-doesnt-work-with-non-default-custom-path-to-the-config-file#focus=Comments-27-8196242.0-0).
 
