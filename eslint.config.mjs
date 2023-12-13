@@ -89,7 +89,7 @@ const typescriptRules = {
   ...typescriptEslintPlugin.configs['recommended-type-checked'].rules,
   ...typescriptEslintPlugin.configs.strict.rules,
   ...typescriptEslintPlugin.configs['strict-type-checked'].rules,
-  ...typescriptEslintPlugin.configs['stylistic'].rules,
+  ...typescriptEslintPlugin.configs['stylistic-type-checked'].rules,
   ...typescriptStylisticPlugin.configs['disable-legacy'].rules,
   ...importRules,
   ...baseRules,
