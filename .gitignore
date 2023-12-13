@@ -6,7 +6,7 @@ build/
 #.vscode/*
 !.vscode/
 # .idea
-!.idea
+!.idea/
 .idea/workspace.xml
 
 ### Project ###
