@@ -2,13 +2,15 @@
   "extends": "./tsconfig.base",
   "compilerOptions": {
     "strict": true,
-    "alwaysStrict": true,
-    "strictNullChecks": true,
-    "exactOptionalPropertyTypes": true,
+    "sourceMap": false,
+    "removeComments": true,
+    ////
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitAny": true,
-    "noFallthroughCasesInSwitch": true,
-    "removeComments": true
+    ////
+    "alwaysStrict": true,
+    "strictNullChecks": true,
+    "exactOptionalPropertyTypes": true
   }
 }

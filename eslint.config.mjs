@@ -10,7 +10,7 @@ import typescriptEslintParser from '@typescript-eslint/parser'
 import prettierConfig from 'eslint-config-prettier'
 import pluginImport from 'eslint-plugin-import'
 import pluginImportConfig from 'eslint-plugin-import/config/recommended.js'
-import jsDocPlugin from 'eslint-plugin-jsdoc'
+import pluginJSDoc from 'eslint-plugin-jsdoc'
 import prettierPlugin from 'eslint-plugin-prettier'
 import * as espree from 'espree'
 import globals from 'globals'
@@ -26,8 +26,14 @@ const allTsExtensionsArray = ['ts', 'mts', 'cts', 'tsx', 'mtsx']
 const allJsExtensionsArray = ['js', 'mjs', 'cjs', 'jsx', 'mjsx']
 const allTsExtensions = allTsExtensionsArray.join(',')
 const allJsExtensions = allJsExtensionsArray.join(',')
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const allExtensions = [...allTsExtensionsArray, ...allJsExtensionsArray].join(',')
+
+const env = (() => {
+  if (typeof process.env.NODE_ENV === 'undefined') return 'base'
+  if (process.env.NODE_ENV === 'development') return 'development'
+  if (process.env.NODE_ENV === 'production') return 'production'
+  return 'error'
+})()
 
 const importRules = {
   'import/no-unresolved': 'error',
@@ -76,9 +82,29 @@ const baseRules = {
   '@stylistic/array-element-newline': ['error', 'consistent'],
 }
 
-const typescriptRules = {}
+const typescriptRules = {
+  ...prettierConfig.rules,
+  ...pluginImportConfig.rules,
+  ...typescriptEslintPlugin.configs.recommended.rules,
+  ...typescriptEslintPlugin.configs['recommended-type-checked'].rules,
+  ...typescriptEslintPlugin.configs.strict.rules,
+  ...typescriptEslintPlugin.configs['strict-type-checked'].rules,
+  ...typescriptEslintPlugin.configs['stylistic'].rules,
+  ...typescriptStylisticPlugin.configs['disable-legacy'].rules,
+  ...importRules,
+  ...baseRules,
+}
 
-const javascriptRules = {}
+const javascriptRules = {
+  ...prettierConfig.rules,
+  ...pluginImportConfig.rules,
+  ...typescriptEslintPlugin.configs.recommended.rules,
+  ...typescriptEslintPlugin.configs.strict.rules,
+  ...typescriptEslintPlugin.configs['stylistic'].rules,
+  ...javascriptStylisticPlugin.configs['disable-legacy'].rules,
+  ...importRules,
+  ...baseRules,
+}
 
 const typescriptRulesDev = {
   '@typescript-eslint/no-explicit-any': ['warn'],
@@ -95,14 +121,14 @@ const javascriptRulesDev = {
 const config = [
   {
     /* setup parser for all files */
-    files: [`**/*.{${allTsExtensions},${allJsExtensions}}`],
+    files: [`**/*.{${allExtensions}}`],
     languageOptions: {
-      sourceType: 'module',
       parser: typescriptEslintParser,
       parserOptions: {
         ecmaVersion: 'latest', // 2024 sets the ecmaVersion parser option to 15
         tsconfigRootDir: resolve(projectDirname),
-        project: './tsconfig.json',
+        project: env === 'production' ? './tsconfig.prod.json' : './tsconfig.json',
+        sourceType: 'module',
       },
     },
   },
@@ -124,18 +150,6 @@ const config = [
       'prettier': prettierPlugin,
     },
     rules: {
-      ...prettierConfig.rules,
-      ...pluginImportConfig.rules,
-      ...typescriptEslintPlugin.configs['stylistic-type-checked'].rules,
-      ...typescriptStylisticPlugin.configs['disable-legacy'].rules,
-      ...typescriptEslintPlugin.configs.recommended.rules,
-      ...typescriptEslintPlugin.configs['recommended-type-checked'].rules,
-      //
-      // ...typescriptEslintPlugin.configs.strict.rules,
-      // ...typescriptEslintPlugin.configs['strict-type-checked'].rules,
-      //
-      ...importRules,
-      ...baseRules,
       ...typescriptRules,
       ...typescriptRulesDev,
     },
@@ -158,18 +172,6 @@ const config = [
       'prettier': prettierPlugin,
     },
     rules: {
-      ...prettierConfig.rules,
-      ...pluginImportConfig.rules,
-      ...typescriptEslintPlugin.configs['stylistic'].rules,
-      ...javascriptStylisticPlugin.configs['disable-legacy'].rules,
-      ...typescriptEslintPlugin.configs.recommended.rules,
-      ...typescriptEslintPlugin.configs['recommended-type-checked'].rules,
-      //
-      // ...typescriptEslintPlugin.configs.strict.rules,
-      // ...typescriptEslintPlugin.configs['strict-type-checked'].rules,
-      //
-      ...importRules,
-      ...baseRules,
       ...javascriptRules,
       ...javascriptRulesDev,
     },
@@ -177,6 +179,13 @@ const config = [
   {
     /* config files: typescript */
     files: [`**/*.config.{${allTsExtensions}}`],
+    // settings: {
+    //   'import/resolver': {
+    //     typescript: {
+    //       alwaysTryTypes: true, // always try to resolve types under `<root>@types` directory even it doesn't contain any source code, like `@types/unist`
+    //     },
+    //   },
+    // },
     plugins: {
       '@typescript-eslint': typescriptEslintPlugin,
       '@stylistic': defaultStylisticPlugin,
@@ -184,23 +193,20 @@ const config = [
       'prettier': prettierPlugin,
     },
     rules: {
-      ...prettierConfig.rules,
-      ...typescriptEslintPlugin.configs['stylistic-type-checked'].rules,
-      ...typescriptStylisticPlugin.configs['disable-legacy'].rules,
-      ...importRules,
-      ...baseRules,
       ...typescriptRules,
-      '@typescript-eslint/prefer-nullish-coalescing': ['off'],
+      // '@typescript-eslint/prefer-nullish-coalescing': ['off'],
     },
   },
   {
     /* config files: javascript */
     files: [`**/*.config.{${allJsExtensions}}`],
     settings: {
+      'import/parsers': {
+        espree: ['.js', '.mjs', '.cjs', '.jsx', '.mjsx'],
+      },
       'import/resolver': {
-        typescript: {
-          project: './tsconfig.json',
-        },
+        typescript: {},
+        // node: {},
       },
     },
     plugins: {
@@ -210,17 +216,7 @@ const config = [
       'prettier': prettierPlugin,
     },
     rules: {
-      ...prettierConfig.rules,
-      ...typescriptEslintPlugin.configs['stylistic'].rules,
-      ...javascriptStylisticPlugin.configs['disable-legacy'].rules,
-      ...typescriptEslintPlugin.configs.recommended.rules,
-      ...typescriptEslintPlugin.configs['recommended-type-checked'].rules,
-      ...typescriptEslintPlugin.configs.strict.rules,
-      ...importRules,
-      ...baseRules,
       ...javascriptRules,
-      '@typescript-eslint/no-unused-vars': ['warn'],
-      '@typescript-eslint/no-unsafe-call': ['warn'],
       '@typescript-eslint/no-unsafe-member-access': ['off'],
       '@typescript-eslint/no-unsafe-assignment': ['off'],
     },
@@ -255,7 +251,7 @@ const config = [
       },
     },
     plugins: {
-      'jsdoc': jsDocPlugin,
+      'jsdoc': pluginJSDoc,
       '@stylistic': defaultStylisticPlugin,
     },
     rules: {

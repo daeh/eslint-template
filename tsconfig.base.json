@@ -7,19 +7,18 @@
     /* Bundler Mode */
     "moduleResolution": "bundler",
     "noEmit": true,
-    "esModuleInterop": false,
-    // "allowSyntheticDefaultImports": false,
+    // "esModuleInterop": false,
     // "allowImportingTsExtensions": true,
     // "resolveJsonModule": true,
+    // "allowSyntheticDefaultImports": true,
+    // "isolatedModules": true, // for bundlers like vite. Setting the isolatedModules flag tells TypeScript to warn you if you write certain code that can’t be correctly interpreted by a single-file transpilation process.
 
     /* Linting */
-    "strict": true,
-    "skipLibCheck": true, // enable for temp fix
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    "skipLibCheck": true,
     "noFallthroughCasesInSwitch": true,
     "forceConsistentCasingInFileNames": true,
     "useDefineForClassFields": true,
+    "strictNullChecks": true,
 
     /* Enable JavaScript Compilation */
     "allowJs": true,

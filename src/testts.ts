@@ -1,8 +1,11 @@
-const sumVars = (x, y) => {
-  return Number(x) + Number(y)
+const sumVars = (x: number, y: number) => {
+  return x + y
 }
 
-;(document.getElementById('aButton') as HTMLButtonElement).addEventListener('click', () => {
-  const a = { b: 1, c: 2 }
-  const d = sumVars(a.b, a['c']) // d is unused and should give a warning
-})
+const aButton1 = document.getElementById('aButton')
+if (aButton1 instanceof HTMLButtonElement) {
+  aButton1.addEventListener('click', () => {
+    const a: Record<string, number> = { b: 1, c: 2 }
+    const d = sumVars(a.b, a['c']) // d is unused and should give a warning
+  })
+}
