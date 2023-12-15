@@ -22,18 +22,18 @@ import WebPPLjsGlobals from './globals/globalsWebPPLJs.mjs'
 
 const projectDirname = dirname(fileURLToPath(import.meta.url))
 
+const env = (() => {
+  if (typeof process.env.NODE_ENV === 'undefined') return 'default'
+  if (process.env.NODE_ENV === 'development') return 'development'
+  if (process.env.NODE_ENV === 'production') return 'production'
+  return 'error'
+})()
+
 const allTsExtensionsArray = ['ts', 'mts', 'cts', 'tsx', 'mtsx']
 const allJsExtensionsArray = ['js', 'mjs', 'cjs', 'jsx', 'mjsx']
 const allTsExtensions = allTsExtensionsArray.join(',')
 const allJsExtensions = allJsExtensionsArray.join(',')
 const allExtensions = [...allTsExtensionsArray, ...allJsExtensionsArray].join(',')
-
-const env = (() => {
-  if (typeof process.env.NODE_ENV === 'undefined') return 'base'
-  if (process.env.NODE_ENV === 'development') return 'development'
-  if (process.env.NODE_ENV === 'production') return 'production'
-  return 'error'
-})()
 
 const importRules = {
   'import/no-unresolved': 'error',

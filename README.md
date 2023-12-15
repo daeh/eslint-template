@@ -18,7 +18,7 @@ This project is configured as an `ES Module`, so this config file could be named
 
 While ESLint has no issue using the `.mjs` config file, at present, IDEs like VS Code and IntelliJ IDEA require the `.js` extension. A simple workaround is to make an alias `eslint.config.js` that points to `eslint.config.mjs`. This is done automatically during install by the `package.json` file.
 
-This project uses **TypeScript** and **Prettier**, which are configured in `tsconfig.json` and `.prettierrc.json`. The ESLint config integrates these configurations.
+This project uses **TypeScript** and **Prettier**, which are configured in `tsconfig.json` and `prettier.config.mjs`. The ESLint config integrates these configurations.
 
 ### WebPPL
 
@@ -113,7 +113,7 @@ You can format, lint and build the project from the command line by calling the 
 ```json
 {
   "scripts": {
-    "lint": "export ESLINT_USE_FLAT_CONFIG=true && prettier --config .prettierrc.json --write . && eslint --config eslint.config.mjs --fix . && tsc --project tsconfig.json --noEmit"
+    "lint": "export ESLINT_USE_FLAT_CONFIG=true && prettier --config prettier.config.mjs --write . && eslint --config eslint.config.mjs --fix . && tsc --project tsconfig.json --noEmit"
   }
 }
 ```

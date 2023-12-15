@@ -5,7 +5,7 @@ build/
 ### Editor directories and files ###
 #.vscode/*
 !.vscode/
-# .idea
+# .idea/
 !.idea/
 .idea/workspace.xml
 

@@ -25,5 +25,5 @@
     "checkJs": true
   },
   "include": ["types/*.d.ts", "**/*.ts", "**/*.mts", "**/*.cts", "**/*.tsx", "**/*.mtsx", "**/*.js", "**/*.mjs", "**/*.cjs", "**/*.jsx", "**/*.mjsx"],
-  "exclude": ["dist", "build"]
+  "exclude": ["dist", "build", "_lintignore"]
 }
