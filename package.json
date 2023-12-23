@@ -1,8 +1,17 @@
 {
   "name": "eslint-template",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "version": "0.0.1",
+  "description": "Template ESLint project using Flat Config with Stylish Plugin. Includes WebPPL",
+  "author": "Dae Houlihan <dev@daeh.info> (https://daeh.info)",
+  "license": "MIT",
+  "homepage": "https://github.com/daeh/eslint-template#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daeh/eslint-template.git"
+  },
+  "bugs": {
+    "url": "https://github.com/daeh/eslint-template/issues"
+  },
   "scripts": {
     "build": "tsc --project tsconfig.json --noEmit",
     "build-dev": "export NODE_ENV=development && export ESLINT_USE_FLAT_CONFIG=true && prettier --config prettier.config.mjs --write . && eslint --config eslint.config.mjs --fix . && tsc --project tsconfig.dev.json --noEmit",
@@ -13,22 +22,23 @@
     "lint-dry": "export ESLINT_USE_FLAT_CONFIG=true && prettier --config prettier.config.mjs --check . ; eslint --config eslint.config.mjs . && tsc --project tsconfig.json --noEmit",
     "postinstall": "node ./scripts/linkconfig.mjs"
   },
+  "type": "module",
   "devDependencies": {
-    "@eslint/js": "^8.55.0",
+    "@eslint/js": "^8.56.0",
     "@stylistic/eslint-plugin": "^1.5.1",
     "@stylistic/eslint-plugin-js": "^1.5.1",
     "@stylistic/eslint-plugin-ts": "^1.5.1",
     "@types/eslint-config-prettier": "^6.11.3",
-    "@types/node": "^20.10.4",
+    "@types/node": "^20.10.5",
     "@types/underscore": "^1.11.15",
-    "@typescript-eslint/eslint-plugin": "^6.14.0",
-    "@typescript-eslint/parser": "^6.14.0",
-    "eslint": "^8.55.0",
+    "@typescript-eslint/eslint-plugin": "^6.15.0",
+    "@typescript-eslint/parser": "^6.15.0",
+    "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-import-resolver-typescript": "^3.6.1",
-    "eslint-plugin-import": "^2.29.0",
-    "eslint-plugin-jsdoc": "^46.9.0",
-    "eslint-plugin-prettier": "^5.0.1",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-jsdoc": "^46.9.1",
+    "eslint-plugin-prettier": "^5.1.1",
     "globals": "^13.24.0",
     "prettier": "^3.1.1",
     "typescript": "^5.3.3",
