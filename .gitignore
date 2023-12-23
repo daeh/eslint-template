@@ -1,14 +1,17 @@
-### Building ###
+### Runtime ###
+node_modules/
 dist/
 build/
 
 ### Editor directories and files ###
-#.vscode/*
+# .vscode/
 !.vscode/
 # .idea/
 !.idea/
 .idea/workspace.xml
 
-### Project ###
+### Generated files ###
 eslint.config.js
+
+### Project ###
 

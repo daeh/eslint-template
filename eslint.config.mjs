@@ -58,6 +58,7 @@ const importRules = {
         'sibling', // Relative imports
         // ['sibling', 'parent'], // Relative imports, the sibling and parent types they can be mingled together
         'index', // index imports
+        'type', // type imports
         'unknown', // unknown
       ],
       'newlines-between': 'always',
@@ -297,7 +298,7 @@ const config = [
     },
   },
   {
-    ignores: ['dist', 'build'],
+    ignores: ['dist', 'build', '**/*_lintignore*', '**/*-buildignore*', '**/*_buildignore*'],
   },
 ]
 
