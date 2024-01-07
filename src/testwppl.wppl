@@ -1,6 +1,6 @@
 /**
  * Underscore.js library for JSDoc
- * @type {import('underscore')}
+ * @type {import('lodash')}
  */
 
 const divideVars = function(x, y) {

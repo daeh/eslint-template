@@ -30,7 +30,7 @@ I have included an example of how to use ESLint to format [WebPPL](https://webpp
 - Git clone the forked repo
 - Enter the repo folder
 
-- Install the dependancies using [Yarn](https://yarnpkg.com/) or [npm](https://www.npmjs.com/), e.g.
+- Install the dependencies using [Yarn](https://yarnpkg.com/) or [npm](https://www.npmjs.com/), e.g.
 
 ```shell
 ### Clone your forked repo to the current working directory
@@ -44,7 +44,7 @@ cd eslint-template || exit
 yarn install ### or: npm install
 ```
 
-In addition to installing the dependancies, this will create the `eslint.config.js` link to `eslint.config.mjs`.
+In addition to installing the dependencies, this will create the `eslint.config.js` link to `eslint.config.mjs`.
 
 ### VS Code Settings
 

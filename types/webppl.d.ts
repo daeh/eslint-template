@@ -1,4 +1,4 @@
-/// <reference types="@types/underscore" />
+/// <reference types="@types/lodash" />
 
 // declare const _: UnderscoreStatic
 
