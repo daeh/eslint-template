@@ -1,17 +1,35 @@
-### Runtime ###
+#########
+### generated directories ###
+#########
 node_modules/
-dist/
-build/
+_build/
+logs/
 
+#########
+### generated files ###
+#########
+**/.DS_Store
+_build.zip
+
+#########
+### generated yarn files
+#########
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+# !.yarn/sdks
+!.yarn/versions
+
+#########
 ### Editor directories and files ###
+#########
 # .vscode/
 !.vscode/
 # .idea/
 !.idea/
 .idea/workspace.xml
 
-### Generated files ###
-eslint.config.js
-
-### Project ###
-
+#########
+### project specific patterns ###
+#########

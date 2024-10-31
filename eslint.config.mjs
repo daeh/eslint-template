@@ -2,14 +2,12 @@ import { dirname, resolve } from 'path'
 import { fileURLToPath } from 'url'
 
 import eslint from '@eslint/js'
-import defaultStylisticPlugin from '@stylistic/eslint-plugin'
-import javascriptStylisticPlugin from '@stylistic/eslint-plugin-js'
-import typescriptStylisticPlugin from '@stylistic/eslint-plugin-ts'
+import stylisticPlugin from '@stylistic/eslint-plugin'
 import typescriptEslintPlugin from '@typescript-eslint/eslint-plugin'
 import typescriptEslintParser from '@typescript-eslint/parser'
 import prettierConfig from 'eslint-config-prettier'
-import pluginImport from 'eslint-plugin-import'
-import pluginImportConfig from 'eslint-plugin-import/config/recommended.js'
+import importPlugin from 'eslint-plugin-import'
+// import pluginImportConfig from 'eslint-plugin-import/config/recommended.js'
 import pluginJSDoc from 'eslint-plugin-jsdoc'
 import prettierPlugin from 'eslint-plugin-prettier'
 import * as espree from 'espree'
@@ -22,10 +20,19 @@ import WebPPLjsGlobals from './globals/globalsWebPPLJs.mjs'
 
 const projectDirname = dirname(fileURLToPath(import.meta.url))
 
-const env = (() => {
+const context = (() => {
   if (typeof process.env.NODE_ENV === 'undefined') return 'default'
   if (process.env.NODE_ENV === 'development') return 'development'
   if (process.env.NODE_ENV === 'production') return 'production'
+  new Error('Invalid NODE_ENV')
+  return 'error'
+})()
+
+const tsconfig = (() => {
+  if (context === 'default') return './tsconfig.json'
+  if (context === 'development') return './tsconfig.dev.json'
+  if (context === 'production') return './tsconfig.prod.json'
+  new Error('Invalid context')
   return 'error'
 })()
 
@@ -36,7 +43,17 @@ const allJsExtensions = allJsExtensionsArray.join(',')
 const allExtensions = [...allTsExtensionsArray, ...allJsExtensionsArray].join(',')
 
 const importRules = {
+  'import/named': 'error',
   'import/no-unresolved': 'error',
+  '@typescript-eslint/consistent-type-imports': [
+    'error',
+    {
+      prefer: 'type-imports',
+      disallowTypeAnnotations: true,
+      fixStyle: 'inline-type-imports',
+    },
+  ],
+  '@typescript-eslint/no-import-type-side-effects': 'error',
   'sort-imports': [
     'error',
     {
@@ -59,9 +76,11 @@ const importRules = {
         // ['sibling', 'parent'], // Relative imports, the sibling and parent types they can be mingled together
         'index', // index imports
         'type', // type imports
+        'object', // object imports
         'unknown', // unknown
       ],
       'newlines-between': 'always',
+      'distinctGroup': true,
       'alphabetize': {
         order: 'asc',
         caseInsensitive: true, // ignore case
@@ -85,34 +104,39 @@ const baseRules = {
 
 const typescriptRules = {
   ...prettierConfig.rules,
-  ...pluginImportConfig.rules,
+  // ...pluginImportConfig.rules, //****
   ...typescriptEslintPlugin.configs.recommended.rules,
   ...typescriptEslintPlugin.configs['recommended-type-checked'].rules,
   ...typescriptEslintPlugin.configs.strict.rules,
   ...typescriptEslintPlugin.configs['strict-type-checked'].rules,
   ...typescriptEslintPlugin.configs['stylistic-type-checked'].rules,
-  ...typescriptStylisticPlugin.configs['disable-legacy'].rules,
+  ...stylisticPlugin.configs['disable-legacy'].rules,
   ...importRules,
   ...baseRules,
 }
 
 const javascriptRules = {
   ...prettierConfig.rules,
-  ...pluginImportConfig.rules,
+  // ...pluginImportConfig.rules, //***
   ...typescriptEslintPlugin.configs.recommended.rules,
   ...typescriptEslintPlugin.configs.strict.rules,
-  ...typescriptEslintPlugin.configs['stylistic'].rules,
-  ...javascriptStylisticPlugin.configs['disable-legacy'].rules,
+  ...typescriptEslintPlugin.configs.stylistic.rules,
+  ...stylisticPlugin.configs['disable-legacy'].rules,
   ...importRules,
   ...baseRules,
 }
 
 const typescriptRulesDev = {
   '@typescript-eslint/no-explicit-any': ['warn'],
-  '@typescript-eslint/no-unused-vars': ['warn'],
+  '@typescript-eslint/no-unsafe-assignment': ['warn'],
+  '@typescript-eslint/no-unsafe-member-access': ['warn'],
+  '@typescript-eslint/no-unsafe-return': ['warn'],
+  '@typescript-eslint/no-unsafe-argument': ['warn'],
+  '@typescript-eslint/no-unused-vars': ['off'],
   '@typescript-eslint/prefer-nullish-coalescing': ['off'],
   '@typescript-eslint/no-inferrable-types': ['off'],
   '@typescript-eslint/dot-notation': ['off'],
+  '@typescript-eslint/no-unnecessary-condition': ['warn'],
 }
 
 const javascriptRulesDev = {
@@ -127,9 +151,9 @@ const config = [
       parser: typescriptEslintParser,
       parserOptions: {
         ecmaVersion: 'latest', // 2024 sets the ecmaVersion parser option to 15
-        tsconfigRootDir: resolve(projectDirname),
-        project: env === 'production' ? './tsconfig.prod.json' : './tsconfig.json',
         sourceType: 'module',
+        tsconfigRootDir: resolve(projectDirname),
+        project: tsconfig,
       },
     },
   },
@@ -146,8 +170,8 @@ const config = [
     },
     plugins: {
       '@typescript-eslint': typescriptEslintPlugin,
-      '@stylistic': defaultStylisticPlugin,
-      'import': pluginImport,
+      '@stylistic': stylisticPlugin,
+      'import': importPlugin,
       'prettier': prettierPlugin,
     },
     rules: {
@@ -168,8 +192,8 @@ const config = [
     },
     plugins: {
       '@typescript-eslint': typescriptEslintPlugin,
-      '@stylistic': defaultStylisticPlugin,
-      'import': pluginImport,
+      '@stylistic': stylisticPlugin,
+      'import': importPlugin,
       'prettier': prettierPlugin,
     },
     rules: {
@@ -187,8 +211,8 @@ const config = [
     },
     plugins: {
       '@typescript-eslint': typescriptEslintPlugin,
-      '@stylistic': defaultStylisticPlugin,
-      'import': pluginImport,
+      '@stylistic': stylisticPlugin,
+      'import': importPlugin,
       'prettier': prettierPlugin,
     },
     rules: {
@@ -200,9 +224,9 @@ const config = [
     /* config files: javascript */
     files: [`**/*.config.{${allJsExtensions}}`],
     settings: {
-      'import/parsers': {
-        espree: ['.js', '.mjs', '.cjs', '.jsx', '.mjsx'],
-      },
+      // 'import/parsers': {
+      //   espree: ['.js', '.mjs', '.cjs', '.jsx', '.mjsx'],
+      // },
       'import/resolver': {
         typescript: {},
         // node: {},
@@ -210,8 +234,8 @@ const config = [
     },
     plugins: {
       '@typescript-eslint': typescriptEslintPlugin,
-      '@stylistic': defaultStylisticPlugin,
-      'import': pluginImport,
+      '@stylistic': stylisticPlugin,
+      'import': importPlugin,
       'prettier': prettierPlugin,
     },
     rules: {
@@ -251,12 +275,12 @@ const config = [
     },
     plugins: {
       'jsdoc': pluginJSDoc,
-      '@stylistic': defaultStylisticPlugin,
+      '@stylistic': stylisticPlugin,
     },
     rules: {
       'jsdoc/check-tag-names': 'error',
       'jsdoc/check-types': 'error',
-      ...javascriptStylisticPlugin.configs['disable-legacy'].rules,
+      ...stylisticPlugin.configs['disable-legacy'].rules,
       ...eslint.configs.recommended.rules,
       '@stylistic/indent': [
         'error',

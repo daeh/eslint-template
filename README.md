@@ -4,11 +4,11 @@ This is a future-looking configuration that implements the major developments fr
 
 ### ESLint Flat Config System
 
-Beginning in ESLint `v9.0.0`, the default will be the new [flat config system](https://eslint.org/docs/latest/use/configure/configuration-files-new). This will depreciate the `Common.js Module` config system (which uses `.eslintrc.js`), replacing it with the `ES Module` config system (which uses `eslint.config.js`).
+Beginning in ESLint `v9.0.0`, the default will be the new [flat config system](https://eslint.org/docs/latest/use/configure/configuration-files-new). This will deprecating the `Common.js Module` config system (which uses `.eslintrc.js`), replacing it with the `ES Module` config system (which uses `eslint.config.js`).
 
 ### ESLint Stylistic
 
-ESLint is [depreciating formatting rules](https://eslint.org/blog/2023/10/deprecating-formatting-rules/), passing over maintenance and development to the community-run plugin [ESLint Stylistic](https://eslint.style/).
+ESLint is [deprecating formatting rules](https://eslint.org/blog/2023/10/deprecating-formatting-rules/), passing over maintenance and development to the community-run plugin [ESLint Stylistic](https://eslint.style/).
 
 ## This Example Config
 
@@ -30,7 +30,7 @@ I have included an example of how to use ESLint to format [WebPPL](https://webpp
 - Git clone the forked repo
 - Enter the repo folder
 
-- Install the dependencies using [Yarn](https://yarnpkg.com/) or [npm](https://www.npmjs.com/), e.g.
+- Install the dependencies using [Yarn](https://yarnpkg.com/), e.g.
 
 ```shell
 ### Clone your forked repo to the current working directory
@@ -41,10 +41,8 @@ git clone --branch main https://github.com/daeh/eslint-template.git eslint-templ
 cd eslint-template || exit
 
 ### Install Node packages
-yarn install ### or: npm install
+yarn install
 ```
-
-In addition to installing the dependencies, this will create the `eslint.config.js` link to `eslint.config.mjs`.
 
 ### VS Code Settings
 
@@ -54,29 +52,29 @@ The relevant settings are:
 
 ```json
 {
-  "editor.formatOnSave": true,
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit"
-  },
-  "eslint.experimental.useFlatConfig": true,
-  "files.associations": {
-    "*.wppl": "javascript"
-  },
-  "[javascript][javascriptreact][typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[wppl]": {
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
-  },
-  "[html]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[json][jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[css][scss][less]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit"
+    },
+    "files.associations": {
+      "*.wppl": "javascript"
+    },
+    "[javascript][javascriptreact][typescript]": {
+      "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    },
+    "[wppl]": {
+      "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    },
+    "[html]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[json][jsonc]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[css][scss][less]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "eslint.useFlatConfig": true,
+    "typescript.enablePromptUseWorkspaceTsdk": true,
 }
 ```
 
@@ -118,7 +116,7 @@ You can format, lint and build the project from the command line by calling the 
 }
 ```
 
-by running `yarn lint` or `npm run lint`, etc.
+by running `yarn lint`, etc.
 
 ## Author
 
